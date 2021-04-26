@@ -1,0 +1,28 @@
+{
+    "name": "kspedu/laravel-countries-states-cities",
+    "description": "Countries, States and Cities with Timezones package for Laravel",
+	"license": "MIT",
+    "authors": [
+        {
+            "name": "Anand Pilania",
+            "email": "pilaniaanand@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+				"KSPEdu\\Countries\\ServiceProvider"
+			]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "KSPEdu\\Countries\\": ""
+        }
+    },
+	"config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
