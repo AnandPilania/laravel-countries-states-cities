@@ -1,3 +1,3 @@
 # laravel-countries-states-cities
 
-# DEV
+# `php artisan kspedu:countries` // Require active Internet Connection for first-time use

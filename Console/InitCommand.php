@@ -19,6 +19,7 @@ class InitCommand extends Command
 	public function handle()
 	{
 		$this->callSilent('vendor:publish', ['--tag' => 'kspedu-countries-migrations', '--force' => true]);
+		$this->callSilent('migrate');
 
 		if ($this->downloadData()) {
 			if ($this->countriesSeeder()) {
@@ -83,7 +84,7 @@ class InitCommand extends Command
 			}
 		}
 
-		$this->info('Countries seeded with Timestamp!');
+		$this->info('Countries seeded with Timezones!');
 
 		return true;
 	}
