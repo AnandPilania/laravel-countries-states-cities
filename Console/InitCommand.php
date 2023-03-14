@@ -1,24 +1,24 @@
 <?php
 
-namespace KSPEdu\Countries\Console;
+namespace CountryStateCity\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
 class InitCommand extends Command
 {
-	protected $signature = 'kspedu:countries {--force : Force init.}';
+	protected $signature = 'countrystatecity {--force : Force init.}';
 
 	protected $description = 'Init package';
 
-	protected $localPath = 'countries' . DIRECTORY_SEPARATOR;
+	protected $localPath = 'CountryStateCity' . DIRECTORY_SEPARATOR;
 
 	protected $packageUrl = 'https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/';
 	protected $files = ['countries.json', 'states.json', 'cities.json'];
 
 	public function handle()
 	{
-		$this->callSilent('vendor:publish', ['--tag' => 'kspedu-countries-migrations', '--force' => true]);
+		$this->callSilent('vendor:publish', ['--tag' => 'countrystatecity-migrations', '--force' => true]);
 		$this->callSilent('migrate');
 
 		if ($this->downloadData()) {
@@ -50,7 +50,7 @@ class InitCommand extends Command
 	{
 		foreach (json_decode(Storage::get($this->localPath . 'countries.json'), true) as $country) {
 
-			$country = \KSPEdu\Countries\Models\Country::create([
+			$country = \CountryStateCity\Models\Country::create([
 				'name' => $country['name'],
 				'iso3' => $country['iso3'],
 				'iso2' => $country['iso2'],
@@ -71,7 +71,7 @@ class InitCommand extends Command
 			$timezones = $country['timezones'];
 
 			foreach ($timezones as $timezone) {
-				$timezone = \KSPEdu\Countries\Models\Timezone::firstOrNew([
+				$timezone = \CountryStateCity\Models\Timezone::firstOrNew([
 					'abbreviation' => $timezone['abbreviation'],
 				], [
 					'zone_name' => $timezone['zoneName'],
@@ -92,7 +92,7 @@ class InitCommand extends Command
 	public function statesSeeder()
 	{
 		foreach (json_decode(Storage::get($this->localPath . 'states.json'), true) as $state) {
-			\KSPEdu\Countries\Models\State::create([
+			\CountryStateCity\Models\State::create([
 				'name' => $state['name'],
 				'country_id' => $state['country_id'],
 				'state_code' => $state['state_code'],
@@ -109,7 +109,7 @@ class InitCommand extends Command
 	protected function citySeeder()
 	{
 		foreach (json_decode(Storage::get($this->localPath . 'cities.json'), true) as $city) {
-			\KSPEdu\Countries\Models\City::create([
+			\CountryStateCity\Models\City::create([
 				'name' => $city['name'],
 				'state_id' => $city['state_id'],
 				'latitude' => $city['latitude'],

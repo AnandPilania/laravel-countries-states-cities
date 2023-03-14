@@ -1,5 +1,5 @@
 {
-  "name": "kspedu/laravel-countries-states-cities",
+  "name": "anandpilania/laravel-countries-states-cities",
   "description": "Countries, States and Cities with Timezones package for Laravel",
   "license": "MIT",
   "authors": [
@@ -11,7 +11,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "KSPEdu\\Countries\\ServiceProvider"
+        "CountryStateCity\\ServiceProvider"
       ]
     }
   },
@@ -20,7 +20,7 @@
   },
   "autoload": {
     "psr-4": {
-      "KSPEdu\\Countries\\": ""
+      "CountryStateCity\\": ""
     }
   },
   "config": {
